@@ -1,19 +1,71 @@
-# Applied AI Systems Portfolio
+# ai-system-builder
 
-> **Vision · LLM · Hardware Integration** — Real-world AI pipelines built end-to-end by [@chenweilie](https://github.com/chenweilie)
+AI-powered systems portfolio that connects computer vision models, LLM automation workflows, and hardware integration APIs to solve real operational problems across multiple domains.
 
----
+This project demonstrates how AI can be integrated into practical end-to-end operational systems rather than used as isolated model demos.
 
-## About
+## Problem
 
-This portfolio showcases applied AI engineering across three domains:
-- **Computer Vision** → detection, alerting, real-time inference
-- **LLM Automation** → content pipelines, API orchestration, multi-model workflows
-- **Vision → LLM → Hardware** → full-stack systems bridging software AI with physical devices
+Many real-world operational workflows still rely on manual monitoring, repetitive tasks, or disconnected tools that lack AI automation.
+
+Example scenario:
+- Teams need to monitor physical events, automate content pipelines, or control hardware remotely
+- Manual processes are slow, error-prone, and do not scale
+- No unified AI-to-action pipeline exists that connects perception, reasoning, and execution
+
+The goal of this portfolio is to demonstrate how AI can automate these workflows end-to-end across three engineering domains.
+
+## Solution Overview
+
+This portfolio connects AI models with automation logic and execution actions across Vision, LLM, and Hardware systems.
+
+High-level workflow:
+```
+Input Source (Camera / API / Structured Data)
+       ↓
+AI Processing (Vision / LLM / OCR)
+       ↓
+Decision Logic (Classification / Extraction / Reasoning)
+       ↓
+Automation Trigger (Event pipeline / Webhook / BLE)
+       ↓
+System Action (Notification / API call / Hardware)
+```
 
 Each project follows a consistent engineering pattern: **Problem → Architecture → Implementation → Result**.
 
----
+## Architecture
+
+**Computer Vision Domain**
+- camera / image input
+- object detection (YOLOv8)
+- event classification
+- real-time alert pipeline
+
+**LLM Automation Domain**
+- structured data input
+- LLM reasoning and content generation
+- multi-model orchestration
+- automated publishing workflow
+
+**Vision → LLM → Hardware Domain**
+- screen / OCR input
+- AI command generation
+- BLE transmission layer
+- physical HID hardware execution
+
+**Architecture Diagram:**
+```
+Input
+  ↓
+AI Model
+  ↓
+Decision Logic
+  ↓
+Automation Trigger
+  ↓
+Action / Notification
+```
 
 ## Projects
 
@@ -22,128 +74,97 @@ Each project follows a consistent engineering pattern: **Problem → Architectur
 
 | | |
 |---|---|
-| **Problem** | Property owners miss package deliveries; no smart alerting without expensive subscriptions |
-| **Architecture** | Camera feed → YOLOv8 object detection → event filter → LLM notification composer → push alert |
+| **Problem** | Property owners miss package deliveries with no smart alerting |
+| **Architecture** | Camera feed → YOLOv8 detection → event filter → LLM alert composer → push notification |
 | **Tech Stack** | Python, YOLOv8, OpenCV, OpenAI API |
-| **Result** | Real-time delivery detection with natural-language alert messages, zero cloud subscription |
+| **Result** | Real-time delivery detection with natural-language alerts, < 15s latency |
 
-```
-[Camera] → [YOLOv8 Detector] → [Event Filter]
-                                       ↓
-                              [LLM Message Composer]
-                                       ↓
-                              [Push Notification]
-```
-
----
-
-### 2. LLM Content Automation (petinsure-autopublish)
-**Repo:** [petinsure-autopublish](https://github.com/chenweilie/petinsure-autopublish)
-
-| | |
-|---|---|
-| **Problem** | Content teams spend hours writing SEO articles; manual publishing is slow and inconsistent |
-| **Architecture** | Topic scheduler → LLM content generator → SEO formatter → CMS auto-publish API |
-| **Tech Stack** | Python, OpenAI/Claude API, WordPress REST API |
-| **Result** | Fully automated end-to-end content pipeline; reduces publishing time from hours to minutes |
-
-```
-[Topic Scheduler] → [LLM Generator] → [SEO Formatter]
-                                              ↓
-                                   [CMS Auto-Publish API]
-```
-
----
-
-### 3. LLM Workflow Agent
-**Repo:** [llm-workflow-agent-demo](https://github.com/chenweilie/llm-workflow-agent-demo)
-
-| | |
-|---|---|
-| **Problem** | Complex multi-step tasks require chaining multiple LLM calls with state management |
-| **Architecture** | Task decomposer → parallel LLM agents → result aggregator → structured output |
-| **Tech Stack** | Python, LangChain / direct API, OpenAI |
-| **Result** | Modular agent framework with reusable workflow nodes; demonstrates production-grade LLM orchestration |
-
----
-
-### 4. AI API Integration Demo
-**Repo:** [ai-api-integration-demo](https://github.com/chenweilie/ai-api-integration-demo)
-
-| | |
-|---|---|
-| **Problem** | Developers need a reference implementation for integrating multiple AI APIs reliably |
-| **Architecture** | Unified API client → multi-provider adapter (OpenAI, Gemini, Claude) → response normalizer |
-| **Tech Stack** | Python, REST APIs, async I/O |
-| **Result** | Drop-in adapter pattern enabling provider-agnostic AI integration |
-
----
-
-### 5. Vision → LLM → Hardware (esp32hid-keyboard)
+### 2. ESP32 BLE HID Keyboard
 **Repo:** [esp32hid-keyboard](https://github.com/chenweilie/esp32hid-keyboard)
 
 | | |
 |---|---|
-| **Problem** | Air-gapped/restricted environments cannot run standard clipboard or keyboard automation |
-| **Architecture** | AI workflow output → LLM text formatter → ESP32 BLE HID → physical keyboard injection |
-| **Tech Stack** | Kotlin/Android, ESP32, BLE HID, LLM APIs |
-| **Result** | Physical HID device that receives AI-generated text and types it into any target device via Bluetooth |
+| **Problem** | No way to automate keyboard input into air-gapped or network-restricted hardware |
+| **Architecture** | Android Vision/LLM → BLE GATT → ESP32 → USB HID keystroke injection |
+| **Tech Stack** | Android/Kotlin, ESP32 C, BLE, Gemini Vision API |
+| **Result** | AI-driven physical keyboard emulation for UEFI, KVM, and restricted servers |
 
-```
-[AI Output / LLM Response]
-          ↓
-[Android App — BLE Commander]
-          ↓
-[ESP32 BLE HID Keyboard]
-          ↓
-[Target Device — any OS, air-gapped]
-```
+### 3. ClipReader TTS Automation
+**Repo:** [ClipReader](https://github.com/chenweilie/ClipReader)
 
----
-
-### 6. AI Portfolio Casebook
-**Repo:** [ai-portfolio-casebook](https://github.com/chenweilie/ai-portfolio-casebook)
-
-Deep-dive case studies for each project above: design decisions, tradeoffs, performance benchmarks, and lessons learned.
-
----
-
-## Architecture Overview
-
-```
-┌─────────────────────────────────────────────────────┐
-│              Applied AI Systems Stack                │
-├───────────────┬─────────────────┬───────────────────┤
-│  Vision Layer │   LLM Layer     │  Hardware Layer   │
-│  YOLOv8       │  OpenAI/Claude  │  ESP32 BLE HID    │
-│  OpenCV       │  LangChain      │  Android BLE      │
-│  Camera feeds │  Agent chains   │  Physical devices │
-└───────────────┴─────────────────┴───────────────────┘
-         ↓               ↓                ↓
-    Real-time        Automated        Cross-device
-    alerting         pipelines        AI injection
-```
-
----
-
-## Skills Demonstrated
-
-| Skill | Projects |
+| | |
 |---|---|
-| Computer Vision (YOLOv8) | vision-delivery-alert |
-| LLM API Orchestration | llm-workflow-agent-demo, ai-api-integration-demo |
-| End-to-End Automation | petinsure-autopublish |
-| Hardware + AI Integration | esp32hid-keyboard |
-| Multi-provider AI Adapters | ai-api-integration-demo |
-| Agent / Workflow Design | llm-workflow-agent-demo |
+| **Problem** | Manual reading of AI responses on mobile requires too many taps |
+| **Architecture** | Clipboard monitor → Azure TTS → audio playback → Doubao ASR → automated UI response |
+| **Tech Stack** | Android/Kotlin, Azure TTS, Doubao ASR, Accessibility Service |
+| **Result** | Hands-free AI chatbot consumption pipeline on Android |
 
----
+## Tech Stack
 
-## Contact
+**AI / ML**
+- LLM APIs (OpenAI, Gemini)
+- Computer vision (YOLOv8, OpenCV)
+- TTS / ASR (Azure, Doubao)
 
-- GitHub: [@chenweilie](https://github.com/chenweilie)
-- Open to: AI Engineer / ML Engineer / Backend Engineer roles
+**Backend**
+- Python, Node.js, Kotlin
+- REST API services
+- Workflow automation scripts
 
----
+**Automation**
+- Event trigger pipelines
+- BLE GATT protocol
+- Accessibility Service automation
 
-*Portfolio maintained and updated regularly. Screenshots, demo GIFs, and architecture diagrams are in each project's `/docs` folder.*
+**Infrastructure**
+- Android / ESP32 edge execution
+- Cloudflare / edge services
+- GitHub Actions (CI/CD)
+
+## Example Use Cases
+
+This architecture can support:
+- Physical logistics monitoring and alerting
+- Air-gapped hardware automation
+- Mobile AI productivity workflows
+- IT operations automation
+- Computer vision event pipelines
+
+## Results
+
+Example performance metrics:
+- Event detection to action latency: < 15 seconds
+- Automated workflows replacing manual monitoring
+- Cross-layer AI pipelines from perception to hardware action
+- Demonstrated systems across 3 engineering domains
+
+This portfolio demonstrates how AI can drive practical operational efficiency across vision, language, and hardware systems.
+
+## Repository Structure
+
+```
+ai-system-builder/
+└── README.md           # Portfolio index
+
+Linked repositories:
+├── vision-delivery-alert
+├── esp32hid-keyboard
+└── ClipReader
+```
+
+## Future Improvements
+
+Possible extensions:
+- Multi-input sensor fusion
+- Unified dashboard for all system monitoring
+- Additional automation trigger types
+- Cross-project orchestration layer
+- Real-time system health monitoring
+
+## Author
+
+William Chen  
+Applied AI Engineer | AI Integration | Automation Systems
+
+**LinkedIn:** https://linkedin.com/in/william-chen-98264938  
+**GitHub:** https://github.com/chenweilie
